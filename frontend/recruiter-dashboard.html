@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard - Job Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ============================================
+         Navigation Bar
+         ============================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-briefcase"></i>
+                    <span>JobPortal</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="job-listings.html">Browse Jobs</a></li>
+                    <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                    <li><span id="userName" style="color: var(--primary-color); font-weight: 600;"></span></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         Dashboard Section
+         ============================================ -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Recruiter Dashboard</h1>
+                <button class="btn-primary" onclick="showPostJobModal()">
+                    <i class="fas fa-plus"></i> Post New Job
+                </button>
+            </div>
+
+            <!-- Dashboard Tabs -->
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" onclick="switchTab('my-jobs')">
+                    <i class="fas fa-briefcase"></i> My Jobs
+                </button>
+                <button class="dashboard-tab" onclick="switchTab('applications')">
+                    <i class="fas fa-file-alt"></i> Applications
+                </button>
+                <button class="dashboard-tab" onclick="switchTab('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </div>
+
+            <!-- My Jobs Tab -->
+            <div id="myJobsTab" class="tab-content active">
+                <h2>My Job Postings</h2>
+                <div class="table-container">
+                    <table id="jobsTable">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th>Applications</th>
+                                <th>Status</th>
+                                <th>Posted Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobsTableBody">
+                            <tr>
+                                <td colspan="7" class="loading">Loading jobs...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applicationsTab" class="tab-content">
+                <h2>Job Applications</h2>
+                <div class="filter-group" style="margin-bottom: 2rem;">
+                    <label for="jobSelect">Select Job:</label>
+                    <select id="jobSelect" onchange="loadApplicationsForJob()">
+                        <option value="">Select a job to view applications</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table id="applicationsTable">
+                        <thead>
+                            <tr>
+                                <th>Applicant Name</th>
+                                <th>Email</th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody">
+                            <tr>
+                                <td colspan="5" class="text-center">Select a job to view applications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content">
+                <h2>My Profile</h2>
+                <div class="form-container">
+                    <div class="profile-info" id="profileInfo">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <p id="profileName"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <p id="profileEmail"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <p id="profileRole"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Job Modal -->
+    <div id="postJobModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closePostJobModal()">&times;</span>
+            <h2>Post New Job</h2>
+            <form id="postJobForm" onsubmit="handlePostJob(event)">
+                <div class="form-group">
+                    <label for="jobTitle">Job Title *</label>
+                    <input type="text" id="jobTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="companyName">Company Name *</label>
+                    <input type="text" id="companyName" name="company_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="jobDescription">Job Description *</label>
+                    <textarea id="jobDescription" name="description" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="jobCategory">Category *</label>
+                    <select id="jobCategory" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Design">Design</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Product">Product</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="jobLocation">Location *</label>
+                    <input type="text" id="jobLocation" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="jobSalary">Salary *</label>
+                    <input type="text" id="jobSalary" name="salary" placeholder="e.g., $80,000 - $100,000" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Post Job
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Footer
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities since 2024</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/recruiter-dashboard.js"></script>
+</body>
+</html>

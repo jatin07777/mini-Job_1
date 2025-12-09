@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Seeker Dashboard - Job Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ============================================
+         Navigation Bar
+         ============================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-briefcase"></i>
+                    <span>JobPortal</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="job-listings.html">Browse Jobs</a></li>
+                    <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                    <li><span id="userName" style="color: var(--primary-color); font-weight: 600;"></span></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         Dashboard Section
+         ============================================ -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Job Seeker Dashboard</h1>
+                <a href="job-listings.html" class="btn-primary">
+                    <i class="fas fa-search"></i> Browse Jobs
+                </a>
+            </div>
+
+            <!-- Dashboard Tabs -->
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" onclick="switchTab('applications')">
+                    <i class="fas fa-file-alt"></i> My Applications
+                </button>
+                <button class="dashboard-tab" onclick="switchTab('saved')">
+                    <i class="fas fa-bookmark"></i> Saved Jobs
+                </button>
+                <button class="dashboard-tab" onclick="switchTab('profile')">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applicationsTab" class="tab-content active">
+                <h2>My Job Applications</h2>
+                <div class="table-container">
+                    <table id="applicationsTable">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Location</th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody">
+                            <tr>
+                                <td colspan="6" class="loading">Loading applications...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Saved Jobs Tab -->
+            <div id="savedTab" class="tab-content">
+                <h2>Saved Jobs</h2>
+                <div class="jobs-grid" id="savedJobsGrid">
+                    <div class="loading">Loading saved jobs...</div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content">
+                <h2>My Profile</h2>
+                <div class="form-container">
+                    <div class="profile-info" id="profileInfo">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <p id="profileName"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <p id="profileEmail"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <p id="profileRole"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         Footer
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities since 2024</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/user-dashboard.js"></script>
+</body>
+</html>

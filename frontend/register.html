@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Job Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ============================================
+         Navigation Bar
+         ============================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-briefcase"></i>
+                    <span>JobPortal</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="job-listings.html">Browse Jobs</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html" class="btn-primary active">Sign Up</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         Registration Form Section
+         ============================================ -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h1 class="form-title">Create Your Account</h1>
+                <p class="form-subtitle">Join JobPortal and start your journey today</p>
+
+                <!-- Error/Success Messages -->
+                <div id="messageContainer"></div>
+
+                <!-- Registration Form -->
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <!-- Role Selection -->
+                    <div class="form-group">
+                        <label>I want to:</label>
+                        <div class="role-selector">
+                            <div class="role-option active" data-role="job_seeker" onclick="selectRole('job_seeker')">
+                                <i class="fas fa-user-tie"></i>
+                                <p>Find Jobs</p>
+                                <small>Job Seeker</small>
+                            </div>
+                            <div class="role-option" data-role="recruiter" onclick="selectRole('recruiter')">
+                                <i class="fas fa-building"></i>
+                                <p>Post Jobs</p>
+                                <small>Recruiter</small>
+                            </div>
+                        </div>
+                        <input type="hidden" id="role" name="role" value="job_seeker" required>
+                    </div>
+
+                    <!-- Full Name Field -->
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your full name"
+                            required
+                            minlength="3"
+                        >
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Create a password (min. 6 characters)"
+                            required
+                            minlength="6"
+                        >
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-group">
+                        <label style="margin: 0; cursor: pointer; font-weight: normal;">
+                            <input type="checkbox" name="terms" required style="width: auto; margin-right: 0.5rem;">
+                            I agree to the <a href="#" style="color: var(--primary-color);">Terms and Conditions</a>
+                        </label>
+                        <span class="error-message" id="termsError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+
+                <!-- Login Link -->
+                <div class="text-center" style="margin-top: 2rem;">
+                    <p style="color: var(--text-light);">
+                        Already have an account? 
+                        <a href="login.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         Footer
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities since 2024</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="job-listings.html">Browse Jobs</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Jobs - Job Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ============================================
+         Navigation Bar
+         ============================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-briefcase"></i>
+                    <span>JobPortal</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="job-listings.html" class="active">Browse Jobs</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html" class="btn-primary">Sign Up</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         Job Listings Section
+         ============================================ -->
+    <section class="job-listings-section">
+        <div class="container">
+            <h1 class="page-title">Browse Job Opportunities</h1>
+            
+            <!-- Search and Filters -->
+            <div class="filters-container">
+                <div class="search-box">
+                    <div class="search-input-group">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Search jobs by title, company, or keyword..."
+                            onkeyup="handleSearch()"
+                        >
+                    </div>
+                </div>
+                
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter" onchange="applyFilters()">
+                            <option value="">All Categories</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Design">Design</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Product">Product</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="locationFilter">Location</label>
+                        <select id="locationFilter" onchange="applyFilters()">
+                            <option value="">All Locations</option>
+                            <option value="San Francisco, CA">San Francisco, CA</option>
+                            <option value="New York, NY">New York, NY</option>
+                            <option value="Seattle, WA">Seattle, WA</option>
+                            <option value="Los Angeles, CA">Los Angeles, CA</option>
+                            <option value="Austin, TX">Austin, TX</option>
+                            <option value="Boston, MA">Boston, MA</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Chicago, IL">Chicago, IL</option>
+                            <option value="Miami, FL">Miami, FL</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="salaryFilter">Salary Range</label>
+                        <select id="salaryFilter" onchange="applyFilters()">
+                            <option value="">All Salaries</option>
+                            <option value="0-60000">$0 - $60,000</option>
+                            <option value="60000-90000">$60,000 - $90,000</option>
+                            <option value="90000-120000">$90,000 - $120,000</option>
+                            <option value="120000-150000">$120,000 - $150,000</option>
+                            <option value="150000+">$150,000+</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-secondary" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Count -->
+            <div class="results-info">
+                <p id="resultsCount">Loading jobs...</p>
+            </div>
+
+            <!-- Jobs Grid -->
+            <div class="jobs-grid" id="jobsGrid">
+                <div class="loading">Loading jobs...</div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-briefcase"></i>
+                <h3>No jobs found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         Footer
+         ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobPortal</h3>
+                    <p>Connecting talent with opportunities since 2024</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="job-listings.html">Browse Jobs</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JobPortal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/job-listings.js"></script>
+</body>
+</html>
